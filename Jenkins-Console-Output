@@ -1,0 +1,517 @@
+Started by user admin
+Obtained Jenkinsfile.txt from git https://github.com/Dileeprithvi/CI-CD-Jks-K8s-SSH.git
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline
+[Pipeline] getArtifactoryServer
+[Pipeline] newMavenBuild
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/k8ssh
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Dileeprithvi/CI-CD-Jks-K8s-SSH.git # timeout=10
+Fetching upstream changes from https://github.com/Dileeprithvi/CI-CD-Jks-K8s-SSH.git
+ > git --version # timeout=10
+ > git fetch --tags --progress https://github.com/Dileeprithvi/CI-CD-Jks-K8s-SSH.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision 15771f1048518c8ebb022a3228e3434d422a1b34 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 15771f1048518c8ebb022a3228e3434d422a1b34 # timeout=10
+Commit message: "Update services.yml"
+ > git rev-list --no-walk 876a8bb457f273814481b43a34fe070ab49bb8b3 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] tool
+[Pipeline] sh
++ git rev-parse HEAD
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timestamps
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Tool Install)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Artifactory_Configuration)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] newBuildInfo
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Execute_Maven)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] artifactoryMavenBuild
+[2020-06-02T12:16:16.193Z] Jenkins Artifactory Plugin version: 3.6.2
+[2020-06-02T12:16:16.194Z] Artifactory integration is enabled
+[2020-06-02T12:16:16.196Z] [k8ssh] $ /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.252.b09-2.el7_8.x86_64/bin/java -classpath /var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven/boot/* -Dmaven.home=/var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven -Dmaven.conf=/var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven/conf -DbuildInfoConfig.propertiesFile=/var/lib/jenkins/workspace/k8ssh@tmp/artifactory/buildInfo1562963931069716125.properties -DbuildInfoConfig.artifactoryResolutionEnabled=true -Dm3plugin.lib=/var/lib/jenkins/workspace/k8ssh@tmp/artifactory/cache/artifactory-plugin/3.6.2 -Dclassworlds.conf=/var/lib/jenkins/workspace/k8ssh@tmp/artifactory/classworlds5858880449835336900conf -Dmaven.multiModuleProjectDirectory=/var/lib/jenkins/workspace/k8ssh org.codehaus.plexus.classworlds.launcher.Launcher -f pom.xml clean install
+[2020-06-02T12:16:18.164Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - Scanning for projects...
+[2020-06-02T12:16:18.268Z] [main] WARNING org.apache.maven.graph.DefaultGraphBuilder - 
+[2020-06-02T12:16:18.268Z] [main] WARNING org.apache.maven.graph.DefaultGraphBuilder - Some problems were encountered while building the effective model for com.example.maven-project:server:jar:1.0-SNAPSHOT
+[2020-06-02T12:16:18.270Z] [main] WARNING org.apache.maven.graph.DefaultGraphBuilder - Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter.
+[2020-06-02T12:16:18.270Z] [main] WARNING org.apache.maven.graph.DefaultGraphBuilder - 
+[2020-06-02T12:16:18.272Z] [main] WARNING org.apache.maven.graph.DefaultGraphBuilder - Some problems were encountered while building the effective model for com.example.maven-project:webapp:war:1.0-SNAPSHOT
+[2020-06-02T12:16:18.272Z] [main] WARNING org.apache.maven.graph.DefaultGraphBuilder - Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter.
+[2020-06-02T12:16:18.272Z] [main] WARNING org.apache.maven.graph.DefaultGraphBuilder - 
+[2020-06-02T12:16:18.281Z] [main] WARNING org.apache.maven.graph.DefaultGraphBuilder - Some problems were encountered while building the effective model for com.example.maven-project:maven-project:pom:1.0-SNAPSHOT
+[2020-06-02T12:16:18.281Z] [main] WARNING org.apache.maven.graph.DefaultGraphBuilder - Reporting configuration should be done in <reporting> section, not in maven-site-plugin <configuration> as reportPlugins parameter. @ line 51, column 24
+[2020-06-02T12:16:18.281Z] [main] WARNING org.apache.maven.graph.DefaultGraphBuilder - 
+[2020-06-02T12:16:18.281Z] [main] WARNING org.apache.maven.graph.DefaultGraphBuilder - It is highly recommended to fix these problems because they threaten the stability of your build.
+[2020-06-02T12:16:18.281Z] [main] WARNING org.apache.maven.graph.DefaultGraphBuilder - 
+[2020-06-02T12:16:18.286Z] [main] WARNING org.apache.maven.graph.DefaultGraphBuilder - For this reason, future Maven versions might no longer support building such malformed projects.
+[2020-06-02T12:16:18.286Z] [main] WARNING org.apache.maven.graph.DefaultGraphBuilder - 
+[2020-06-02T12:16:18.318Z] [main] WARNING org.apache.maven.DefaultMaven - The project com.example.maven-project:maven-project:pom:1.0-SNAPSHOT uses prerequisites which is only intended for maven-plugin projects but not for non maven-plugin projects. For such purposes you should use the maven-enforcer-plugin. See https://maven.apache.org/enforcer/enforcer-rules/requireMavenVersion.html
+[2020-06-02T12:16:18.319Z] [main] INFO org.jfrog.build.extractor.maven.BuildInfoRecorder - Initializing Artifactory Build-Info Recording
+[2020-06-02T12:16:18.328Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - ------------------------------------------------------------------------
+[2020-06-02T12:16:18.328Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - Reactor Build Order:
+[2020-06-02T12:16:18.329Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:18.330Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - Maven Project                                                      [pom]
+[2020-06-02T12:16:18.335Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - Server                                                             [jar]
+[2020-06-02T12:16:18.335Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - Webapp                                                             [war]
+[2020-06-02T12:16:18.340Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:18.340Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --------------< com.example.maven-project:maven-project >---------------
+[2020-06-02T12:16:18.341Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - Building Maven Project 1.0-SNAPSHOT                                [1/3]
+[2020-06-02T12:16:18.341Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --------------------------------[ pom ]---------------------------------
+[2020-06-02T12:16:18.494Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:18.494Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --- maven-clean-plugin:2.5:clean (default-clean) @ maven-project ---
+[2020-06-02T12:16:18.646Z] [main] INFO org.apache.maven.plugin.clean.CleanMojo - Deleting /var/lib/jenkins/workspace/k8ssh/target
+[2020-06-02T12:16:18.649Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:18.649Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --- maven-install-plugin:2.4:install (default-install) @ maven-project ---
+[2020-06-02T12:16:18.878Z] [main] INFO org.codehaus.plexus.PlexusContainer - Installing /var/lib/jenkins/workspace/k8ssh/pom.xml to /var/lib/jenkins/.m2/repository/com/example/maven-project/maven-project/1.0-SNAPSHOT/maven-project-1.0-SNAPSHOT.pom
+[2020-06-02T12:16:18.921Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:18.921Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - ------------------< com.example.maven-project:server >------------------
+[2020-06-02T12:16:18.921Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - Building Server 1.0-SNAPSHOT                                       [2/3]
+[2020-06-02T12:16:18.921Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --------------------------------[ jar ]---------------------------------
+[2020-06-02T12:16:19.078Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:19.078Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --- maven-clean-plugin:2.5:clean (default-clean) @ server ---
+[2020-06-02T12:16:19.078Z] [main] INFO org.apache.maven.plugin.clean.CleanMojo - Deleting /var/lib/jenkins/workspace/k8ssh/server/target
+[2020-06-02T12:16:19.078Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:19.078Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --- maven-resources-plugin:2.5:resources (default-resources) @ server ---
+[2020-06-02T12:16:19.279Z] [main] INFO org.apache.maven.shared.filtering.DefaultMavenResourcesFiltering - Using 'utf-8' encoding to copy filtered resources.
+[2020-06-02T12:16:19.279Z] [main] [debug] execute contextualize
+[2020-06-02T12:16:19.285Z] INFO org.apache.maven.shared.filtering.DefaultMavenResourcesFiltering - skip non existing resourceDirectory /var/lib/jenkins/workspace/k8ssh/server/src/main/resources
+[2020-06-02T12:16:19.285Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:19.285Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --- maven-compiler-plugin:2.3.2:compile (default-compile) @ server ---
+[2020-06-02T12:16:19.423Z] [main] INFO org.codehaus.plexus.compiler.javac.JavacCompiler - Compiling 1 source file to /var/lib/jenkins/workspace/k8ssh/server/target/classes
+[2020-06-02T12:16:19.908Z] [debug] execute contextualize
+[2020-06-02T12:16:19.909Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:19.909Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --- maven-resources-plugin:2.5:testResources (default-testResources) @ server ---
+[2020-06-02T12:16:19.917Z] [main] INFO org.apache.maven.shared.filtering.DefaultMavenResourcesFiltering - Using 'utf-8' encoding to copy filtered resources.
+[2020-06-02T12:16:19.917Z] [main] INFO org.apache.maven.shared.filtering.DefaultMavenResourcesFiltering - skip non existing resourceDirectory /var/lib/jenkins/workspace/k8ssh/server/src/test/resources
+[2020-06-02T12:16:19.917Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:19.917Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --- maven-compiler-plugin:2.3.2:testCompile (default-testCompile) @ server ---
+[2020-06-02T12:16:19.925Z] [main] INFO org.codehaus.plexus.compiler.javac.JavacCompiler - Compiling 1 source file to /var/lib/jenkins/workspace/k8ssh/server/target/test-classes
+[2020-06-02T12:16:20.437Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:20.437Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --- maven-surefire-plugin:2.11:test (default-test) @ server ---
+[2020-06-02T12:16:20.614Z] [main] INFO org.apache.maven.plugin.surefire.SurefirePlugin - Surefire report directory: /var/lib/jenkins/workspace/k8ssh/server/target/surefire-reports
+[2020-06-02T12:16:20.716Z] 
+[2020-06-02T12:16:20.716Z] -------------------------------------------------------
+[2020-06-02T12:16:20.716Z]  T E S T S
+[2020-06-02T12:16:20.716Z] -------------------------------------------------------
+[2020-06-02T12:16:21.151Z] Running com.example.TestGreeter
+[2020-06-02T12:16:21.246Z] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.101 sec
+[2020-06-02T12:16:21.267Z] 
+[2020-06-02T12:16:21.267Z] Results :
+[2020-06-02T12:16:21.267Z] 
+[2020-06-02T12:16:21.267Z] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+[2020-06-02T12:16:21.267Z] 
+[2020-06-02T12:16:21.356Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:21.359Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --- maven-jar-plugin:2.4:jar (default-jar) @ server ---
+[2020-06-02T12:16:21.582Z] [main] INFO org.codehaus.plexus.archiver.jar.JarArchiver - Building jar: /var/lib/jenkins/workspace/k8ssh/server/target/server.jar
+[2020-06-02T12:16:21.596Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:21.596Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --- maven-install-plugin:2.4:install (default-install) @ server ---
+[2020-06-02T12:16:21.603Z] [main] INFO org.codehaus.plexus.PlexusContainer - Installing /var/lib/jenkins/workspace/k8ssh/server/target/server.jar to /var/lib/jenkins/.m2/repository/com/example/maven-project/server/1.0-SNAPSHOT/server-1.0-SNAPSHOT.jar
+[2020-06-02T12:16:21.608Z] [main] INFO org.codehaus.plexus.PlexusContainer - Installing /var/lib/jenkins/workspace/k8ssh/server/pom.xml to /var/lib/jenkins/.m2/repository/com/example/maven-project/server/1.0-SNAPSHOT/server-1.0-SNAPSHOT.pom
+[2020-06-02T12:16:21.698Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:21.698Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - ------------------< com.example.maven-project:webapp >------------------
+[2020-06-02T12:16:21.698Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - Building Webapp 1.0-SNAPSHOT                                       [3/3]
+[2020-06-02T12:16:21.698Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --------------------------------[ war ]---------------------------------
+[2020-06-02T12:16:21.720Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:21.723Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --- maven-clean-plugin:2.5:clean (default-clean) @ webapp ---
+[2020-06-02T12:16:21.723Z] [main] INFO org.apache.maven.plugin.clean.CleanMojo - Deleting /var/lib/jenkins/workspace/k8ssh/webapp/target
+[2020-06-02T12:16:21.725Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:21.729Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --- maven-resources-plugin:2.5:resources (default-resources) @ webapp ---
+[2020-06-02T12:16:21.729Z] [main] INFO org.apache.maven.shared.filtering.DefaultMavenResourcesFiltering - Using 'utf-8' encoding to copy filtered resources.
+[2020-06-02T12:16:21.730Z] [main] INFO org.apache.maven.shared.filtering.DefaultMavenResourcesFiltering - skip non existing resourceDirectory /var/lib/jenkins/workspace/k8ssh/webapp/sr[debug] execute contextualize
+[2020-06-02T12:16:21.732Z] c/main/resources
+[2020-06-02T12:16:21.732Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:21.737Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --- maven-compiler-plugin:2.3.2:compile (default-compile) @ webapp ---
+[2020-06-02T12:16:21.743Z] [main] INFO org.apache.maven.plugin.CompilerMojo - No sources to compile
+[2020-06-02T12:16:21.743Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:21.743Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --- maven-resources-plugin:2.5:testResources (default-testResources) @ webapp ---
+[2020-06-02T12:16:21.746Z] [main] INFO org.apache.maven.shared.filtering.DefaultMavenResourcesFiltering - Using 'utf-8' encoding to copy filtered resources.
+[2020-06-02T12:16:21.746Z] [main] INFO org.apache.maven.shared.filtering.DefaultMavenResourcesFiltering - skip non existing resourceDirectory /var/lib/jenkins/workspace/k8ssh/webapp/src/test/resources
+[2020-06-02T12:16:21.746Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:21.746Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --- maven-compiler-plugin:2.3.2:testCompile (default-testCompile) @ webapp ---
+[2020-06-02T12:16:21.746Z] [debug] execute contextualize
+[2020-06-02T12:16:21.750Z] [main] INFO org.apache.maven.plugin.TestCompilerMojo - No sources to compile
+[2020-06-02T12:16:21.750Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:21.750Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --- maven-surefire-plugin:2.11:test (default-test) @ webapp ---
+[2020-06-02T12:16:21.758Z] [main] INFO org.apache.maven.plugin.surefire.SurefirePlugin - No tests to run.
+[2020-06-02T12:16:21.758Z] [main] INFO org.apache.maven.plugin.surefire.SurefirePlugin - Surefire report directory: /var/lib/jenkins/workspace/k8ssh/webapp/target/surefire-reports
+[2020-06-02T12:16:21.791Z] 
+[2020-06-02T12:16:21.791Z] -------------------------------------------------------
+[2020-06-02T12:16:21.791Z]  T E S T S
+[2020-06-02T12:16:21.791Z] -------------------------------------------------------
+[2020-06-02T12:16:22.032Z] 
+[2020-06-02T12:16:22.032Z] Results :
+[2020-06-02T12:16:22.032Z] 
+[2020-06-02T12:16:22.043Z] Tests run: 0, Failures: 0, Errors: 0,[main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:22.043Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --- maven-war-plugin:2.2:war (default-war) @ webapp ---
+[2020-06-02T12:16:22.043Z]  Skipped: 0
+[2020-06-02T12:16:22.043Z] 
+[2020-06-02T12:16:22.635Z] [main] INFO org.apache.maven.plugin.war.WarMojo - Packaging webapp
+[2020-06-02T12:16:22.646Z] [main] INFO org.apache.maven.plugin.war.WarMojo - Assembling webapp [webapp] in [/var/lib/jenkins/workspace/k8ssh/webapp/target/webapp]
+[2020-06-02T12:16:22.648Z] [main] INFO org.apache.maven.plugin.war.WarMojo - Processing war project
+[2020-06-02T12:16:22.648Z] [main] INFO org.apache.maven.plugin.war.WarMojo - Copying webapp resources [/var/lib/jenkins/workspace/k8ssh/webapp/src/main/webapp]
+[2020-06-02T12:16:22.665Z] [main] INFO org.apache.maven.plugin.war.WarMojo - Webapp assembled in [25 msecs]
+[2020-06-02T12:16:22.684Z] [main] INFO org.codehaus.plexus.archiver.war.WarArchiver - Building war: /var/lib/jenkins/workspace/k8ssh/webapp/target/webapp.war
+[2020-06-02T12:16:22.695Z] [main] INFO org.codehaus.plexus.archiver.war.WarArchiver - WEB-INF/web.xml already added, skipping
+[2020-06-02T12:16:22.699Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:22.699Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - --- maven-install-plugin:2.4:install (default-install) @ webapp ---
+[2020-06-02T12:16:22.703Z] [main] INFO org.codehaus.plexus.PlexusContainer - Installing /var/lib/jenkins/workspace/k8ssh/webapp/target/webapp.war to /var/lib/jenkins/.m2/repository/com/example/maven-project/webapp/1.0-SNAPSHOT/webapp-1.0-SNAPSHOT.war
+[2020-06-02T12:16:22.703Z] [main] INFO org.codehaus.plexus.PlexusContainer - Installing /var/lib/jenkins/workspace/k8ssh/webapp/pom.xml to /var/lib/jenkins/.m2/repository/com/example/maven-project/webapp/1.0-SNAPSHOT/webapp-1.0-SNAPSHOT.pom
+[2020-06-02T12:16:22.715Z] [main] INFO org.jfrog.build.extractor.maven.BuildDeploymentHelper - Artifactory Build Info Recorder: Saving Build Info to '/var/lib/jenkins/workspace/k8ssh/target/build-info.json'
+[2020-06-02T12:16:23.112Z] [pool-1-thread-3] INFO org.jfrog.build.extractor.maven.BuildInfoClientBuilder - [pool-1-thread-3] Deploying artifact: http://104.154.78.159:8081/artifactory/libs-snapshot/com/example/maven-project/server/1.0-SNAPSHOT/server-1.0-SNAPSHOT.jar
+[2020-06-02T12:16:23.112Z] [pool-1-thread-1] INFO org.jfrog.build.extractor.maven.BuildInfoClientBuilder - [pool-1-thread-1] Deploying artifact: http://104.154.78.159:8081/artifactory/libs-snapshot/com/example/maven-project/maven-project/1.0-SNAPSHOT/maven-project-1.0-SNAPSHOT.pom
+[2020-06-02T12:16:23.113Z] [pool-1-thread-2] INFO org.jfrog.build.extractor.maven.BuildInfoClientBuilder - [pool-1-thread-2] Deploying artifact: http://104.154.78.159:8081/artifactory/libs-snapshot/com/example/maven-project/webapp/1.0-SNAPSHOT/webapp-1.0-SNAPSHOT.war
+[2020-06-02T12:16:23.705Z] [pool-1-thread-2] INFO org.jfrog.build.extractor.maven.BuildInfoClientBuilder - [pool-1-thread-2] Deploying artifact: http://104.154.78.159:8081/artifactory/libs-snapshot/com/example/maven-project/webapp/1.0-SNAPSHOT/webapp-1.0-SNAPSHOT.pom
+[2020-06-02T12:16:23.705Z] [pool-1-thread-3] INFO org.jfrog.build.extractor.maven.BuildInfoClientBuilder - [pool-1-thread-3] Deploying artifact: http://104.154.78.159:8081/artifactory/libs-snapshot/com/example/maven-project/server/1.0-SNAPSHOT/server-1.0-SNAPSHOT.pom
+[2020-06-02T12:16:23.740Z] [main] INFO org.jfrog.build.extractor.maven.BuildDeploymentHelper - Artifactory Build Info Recorder: publish build info set to false, build info will not be published...
+[2020-06-02T12:16:23.744Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - ------------------------------------------------------------------------
+[2020-06-02T12:16:23.744Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - Reactor Summary for Maven Project 1.0-SNAPSHOT:
+[2020-06-02T12:16:23.744Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - 
+[2020-06-02T12:16:23.744Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - Maven Project ...................................... SUCCESS [  0.564 s]
+[2020-06-02T12:16:23.744Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - Server ............................................. SUCCESS [  2.694 s]
+[2020-06-02T12:16:23.744Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - Webapp ............................................. SUCCESS [  1.012 s]
+[2020-06-02T12:16:23.744Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - ------------------------------------------------------------------------
+[2020-06-02T12:16:23.744Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - BUILD SUCCESS
+[2020-06-02T12:16:23.744Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - ------------------------------------------------------------------------
+[2020-06-02T12:16:23.748Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - Total time:  5.615 s
+[2020-06-02T12:16:23.748Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - Finished at: 2020-06-02T12:16:23Z
+[2020-06-02T12:16:23.748Z] [main] INFO org.apache.maven.cli.event.ExecutionEventLogger - ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (SonarQube_Analysis)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] script
+[Pipeline] {
+[Pipeline] tool
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] withSonarQubeEnv
+[2020-06-02T12:16:24.077Z] Injecting SonarQube environment variables using the configuration: sonar
+[Pipeline] {
+[Pipeline] sh
+[2020-06-02T12:16:24.360Z] + /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar-scanner/bin/sonar-scanner
+[2020-06-02T12:16:24.360Z] INFO: Scanner configuration file: /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar-scanner/conf/sonar-scanner.properties
+[2020-06-02T12:16:24.360Z] INFO: Project root configuration file: /var/lib/jenkins/workspace/k8ssh/sonar-project.properties
+[2020-06-02T12:16:24.636Z] INFO: SonarScanner 4.3.0.2102
+[2020-06-02T12:16:24.636Z] INFO: Java 1.8.0_252 Oracle Corporation (64-bit)
+[2020-06-02T12:16:24.636Z] INFO: Linux 3.10.0-1127.8.2.el7.x86_64 amd64
+[2020-06-02T12:16:24.887Z] INFO: User cache: /var/lib/jenkins/.sonar/cache
+[2020-06-02T12:16:24.887Z] INFO: Scanner configuration file: /var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonar-scanner/conf/sonar-scanner.properties
+[2020-06-02T12:16:24.887Z] INFO: Project root configuration file: /var/lib/jenkins/workspace/k8ssh/sonar-project.properties
+[2020-06-02T12:16:24.887Z] INFO: Analyzing on SonarQube server 7.9.3
+[2020-06-02T12:16:24.887Z] INFO: Default locale: "en_US", source code encoding: "UTF-8" (analysis is platform dependent)
+[2020-06-02T12:16:25.139Z] WARN: SonarScanner will require Java 11 to run starting in SonarQube 8.x
+[2020-06-02T12:16:25.390Z] INFO: Load global settings
+[2020-06-02T12:16:25.390Z] INFO: Load global settings (done) | time=85ms
+[2020-06-02T12:16:25.390Z] INFO: Server id: BF41A1F2-AXJgUcNe9mVD4qJ5h4rl
+[2020-06-02T12:16:25.390Z] INFO: User cache: /var/lib/jenkins/.sonar/cache
+[2020-06-02T12:16:25.390Z] INFO: Load/download plugins
+[2020-06-02T12:16:25.390Z] INFO: Load plugins index
+[2020-06-02T12:16:25.641Z] INFO: Load plugins index (done) | time=54ms
+[2020-06-02T12:16:25.641Z] INFO: Load/download plugins (done) | time=91ms
+[2020-06-02T12:16:26.559Z] INFO: Process project properties
+[2020-06-02T12:16:26.559Z] INFO: Execute project builders
+[2020-06-02T12:16:26.559Z] INFO: Execute project builders (done) | time=5ms
+[2020-06-02T12:16:26.559Z] INFO: Project key: PipelineJks-k8-ssh
+[2020-06-02T12:16:26.559Z] INFO: Base dir: /var/lib/jenkins/workspace/k8ssh
+[2020-06-02T12:16:26.560Z] INFO: Working dir: /var/lib/jenkins/workspace/k8ssh/.scannerwork
+[2020-06-02T12:16:26.560Z] INFO: Load project settings for component key: 'PipelineJks-k8-ssh'
+[2020-06-02T12:16:26.560Z] INFO: Load project settings for component key: 'PipelineJks-k8-ssh' (done) | time=42ms
+[2020-06-02T12:16:26.560Z] INFO: Load quality profiles
+[2020-06-02T12:16:26.560Z] INFO: Load quality profiles (done) | time=72ms
+[2020-06-02T12:16:26.560Z] INFO: Detected Jenkins
+[2020-06-02T12:16:26.560Z] INFO: Load active rules
+[2020-06-02T12:16:30.684Z] INFO: Load active rules (done) | time=3258ms
+[2020-06-02T12:16:30.684Z] INFO: Indexing files...
+[2020-06-02T12:16:30.684Z] INFO: Project configuration:
+[2020-06-02T12:16:30.684Z] INFO: 2 files indexed
+[2020-06-02T12:16:30.684Z] INFO: 0 files ignored because of scm ignore settings
+[2020-06-02T12:16:30.684Z] INFO: Quality profile for java: Sonar way
+[2020-06-02T12:16:30.684Z] INFO: ------------- Run sensors on module PipelineJks-k8-ssh
+[2020-06-02T12:16:30.684Z] INFO: Load metrics repository
+[2020-06-02T12:16:30.684Z] INFO: Load metrics repository (done) | time=71ms
+[2020-06-02T12:16:32.557Z] INFO: Sensor JavaSquidSensor [java]
+[2020-06-02T12:16:33.115Z] INFO: Configured Java source version (sonar.java.source): none
+[2020-06-02T12:16:33.115Z] INFO: JavaClasspath initialization
+[2020-06-02T12:16:33.115Z] WARN: Bytecode of dependencies was not provided for analysis of source files, you might end up with less precise results. Bytecode can be provided using sonar.java.libraries property.
+[2020-06-02T12:16:33.115Z] INFO: JavaClasspath initialization (done) | time=18ms
+[2020-06-02T12:16:33.115Z] INFO: JavaTestClasspath initialization
+[2020-06-02T12:16:33.115Z] WARN: Bytecode of dependencies was not provided for analysis of test files, you might end up with less precise results. Bytecode can be provided using sonar.java.test.libraries property.
+[2020-06-02T12:16:33.115Z] INFO: JavaTestClasspath initialization (done) | time=0ms
+[2020-06-02T12:16:33.681Z] INFO: Java Main Files AST scan
+[2020-06-02T12:16:33.681Z] INFO: 1 source files to be analyzed
+[2020-06-02T12:16:33.681Z] INFO: Load project repositories
+[2020-06-02T12:16:33.681Z] INFO: Load project repositories (done) | time=32ms
+[2020-06-02T12:16:34.239Z] INFO: Java Main Files AST scan (done) | time=652ms
+[2020-06-02T12:16:34.239Z] INFO: Java Test Files AST scan
+[2020-06-02T12:16:34.239Z] INFO: 1 source files to be analyzed
+[2020-06-02T12:16:34.239Z] INFO: 1/1 source files have been analyzed
+[2020-06-02T12:16:34.239Z] INFO: Java Test Files AST scan (done) | time=125ms
+[2020-06-02T12:16:34.239Z] INFO: Sensor JavaSquidSensor [java] (done) | time=1768ms
+[2020-06-02T12:16:34.239Z] INFO: Sensor JaCoCo XML Report Importer [jacoco]
+[2020-06-02T12:16:34.239Z] INFO: 1/1 source files have been analyzed
+[2020-06-02T12:16:34.239Z] WARN: Report doesn't exist: '/var/lib/jenkins/workspace/k8ssh/server/target/site/jacoco/jacoco.xml'
+[2020-06-02T12:16:34.239Z] INFO: Sensor JaCoCo XML Report Importer [jacoco] (done) | time=5ms
+[2020-06-02T12:16:34.239Z] INFO: Sensor SurefireSensor [java]
+[2020-06-02T12:16:34.239Z] INFO: parsing [/var/lib/jenkins/workspace/k8ssh/server/target/surefire-reports]
+[2020-06-02T12:16:34.491Z] INFO: Sensor SurefireSensor [java] (done) | time=67ms
+[2020-06-02T12:16:34.491Z] INFO: Sensor JaCoCoSensor [java]
+[2020-06-02T12:16:34.491Z] INFO: JaCoCo report not found: 'server/target/jacoco.exec'
+[2020-06-02T12:16:34.491Z] INFO: Sensor JaCoCoSensor [java] (done) | time=1ms
+[2020-06-02T12:16:34.491Z] INFO: Sensor JavaXmlSensor [java]
+[2020-06-02T12:16:34.491Z] INFO: Sensor JavaXmlSensor [java] (done) | time=2ms
+[2020-06-02T12:16:34.491Z] INFO: Sensor HTML [web]
+[2020-06-02T12:16:34.491Z] INFO: Sensor HTML [web] (done) | time=17ms
+[2020-06-02T12:16:34.491Z] INFO: ------------- Run sensors on project
+[2020-06-02T12:16:34.491Z] INFO: Sensor Zero Coverage Sensor
+[2020-06-02T12:16:34.491Z] INFO: Sensor Zero Coverage Sensor (done) | time=10ms
+[2020-06-02T12:16:34.491Z] INFO: Sensor Java CPD Block Indexer
+[2020-06-02T12:16:34.491Z] INFO: Sensor Java CPD Block Indexer (done) | time=15ms
+[2020-06-02T12:16:34.491Z] INFO: 1 file had no CPD blocks
+[2020-06-02T12:16:34.491Z] INFO: Calculating CPD for 0 files
+[2020-06-02T12:16:34.491Z] INFO: CPD calculation finished
+[2020-06-02T12:16:34.491Z] INFO: Analysis report generated in 131ms, dir size=75 KB
+[2020-06-02T12:16:34.491Z] INFO: Analysis report compressed in 18ms, zip size=13 KB
+[2020-06-02T12:16:34.742Z] INFO: Analysis report uploaded in 37ms
+[2020-06-02T12:16:34.742Z] INFO: ANALYSIS SUCCESSFUL, you can browse http://104.154.78.159:9000/dashboard?id=PipelineJks-k8-ssh
+[2020-06-02T12:16:34.742Z] INFO: Note that you will be able to access the updated dashboard once the server has processed the submitted analysis report
+[2020-06-02T12:16:34.742Z] INFO: More about the report processing at http://104.154.78.159:9000/api/ce/task?id=AXJ09j7I1p1_J7hoUTTc
+[2020-06-02T12:16:34.742Z] INFO: Analysis total time: 8.970 s
+[2020-06-02T12:16:34.742Z] INFO: ------------------------------------------------------------------------
+[2020-06-02T12:16:34.742Z] INFO: EXECUTION SUCCESS
+[2020-06-02T12:16:34.742Z] INFO: ------------------------------------------------------------------------
+[2020-06-02T12:16:34.742Z] INFO: Total time: 10.200s
+[2020-06-02T12:16:34.742Z] INFO: Final Memory: 21M/246M
+[2020-06-02T12:16:34.742Z] INFO: ------------------------------------------------------------------------
+[Pipeline] }
+[Pipeline] // withSonarQubeEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Quality_Gate)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] timeout
+[2020-06-02T12:16:34.952Z] Timeout set to expire in 3 min 0 sec
+[Pipeline] {
+[Pipeline] waitForQualityGate
+[2020-06-02T12:16:34.971Z] Checking status of SonarQube task 'AXJ09j7I1p1_J7hoUTTc' on server 'sonar'
+[2020-06-02T12:16:34.983Z] SonarQube task 'AXJ09j7I1p1_J7hoUTTc' status is 'PENDING'
+[2020-06-02T12:16:39.252Z] SonarQube task 'AXJ09j7I1p1_J7hoUTTc' status is 'SUCCESS'
+[2020-06-02T12:16:39.252Z] SonarQube task 'AXJ09j7I1p1_J7hoUTTc' completed. Quality gate is 'OK'
+[Pipeline] }
+[Pipeline] // timeout
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build Docker Image)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
+[2020-06-02T12:16:39.708Z] + docker build . -t dileep95/spring:15771f1048518c8ebb022a3228e3434d422a1b34
+[2020-06-02T12:16:39.708Z] Sending build context to Docker daemon 602.1 kB
+
+[2020-06-02T12:16:39.708Z] Step 1/4 : FROM tomcat:9-alpine
+[2020-06-02T12:16:39.708Z]  ---> 58d02ef62ed2
+[2020-06-02T12:16:39.708Z] Step 2/4 : ADD webapp/target/*.war /usr/local/tomcat/webapps/
+[2020-06-02T12:16:39.959Z]  ---> b5cd3d7183b9
+[2020-06-02T12:16:39.959Z] Removing intermediate container 073f3259069b
+[2020-06-02T12:16:39.959Z] Step 3/4 : RUN value=`cat conf/server.xml` && echo "${value//8080/8090}" >| conf/server.xml
+[2020-06-02T12:16:39.959Z]  ---> Running in 2c5bdec6c93b
+[2020-06-02T12:16:39.959Z] 
+[2020-06-02T12:16:41.304Z] [91m[0m ---> 47d72eb10231
+[2020-06-02T12:16:41.304Z] Removing intermediate container 2c5bdec6c93b
+[2020-06-02T12:16:41.304Z] Step 4/4 : CMD catalina.sh run
+[2020-06-02T12:16:41.304Z]  ---> Running in 6182dda37284
+[2020-06-02T12:16:41.304Z]  ---> 71c9521f1aa6
+[2020-06-02T12:16:41.304Z] Removing intermediate container 6182dda37284
+[2020-06-02T12:16:41.304Z] Successfully built 71c9521f1aa6
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Docker Push)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withCredentials
+[2020-06-02T12:16:41.585Z] Masking supported pattern matches of $docker_user or $docker_pass
+[Pipeline] {
+[Pipeline] sh
+[2020-06-02T12:16:41.864Z] + docker login -u **** -p ****
+[2020-06-02T12:16:42.415Z] Login Succeeded
+[Pipeline] sh
+[2020-06-02T12:16:42.683Z] + docker push ****/spring:15771f1048518c8ebb022a3228e3434d422a1b34
+[2020-06-02T12:16:42.683Z] The push refers to a repository [docker.io/****/spring]
+[2020-06-02T12:16:42.683Z] 94e2d2772b2c: Preparing
+[2020-06-02T12:16:42.683Z] d24246c675c4: Preparing
+[2020-06-02T12:16:42.683Z] 3997748855d0: Preparing
+[2020-06-02T12:16:42.683Z] 3a55166d29b8: Preparing
+[2020-06-02T12:16:42.683Z] a854dd4eaee0: Preparing
+[2020-06-02T12:16:42.683Z] 3c67124130ec: Preparing
+[2020-06-02T12:16:42.683Z] f8f564cb1419: Preparing
+[2020-06-02T12:16:42.683Z] 638d4576a926: Preparing
+[2020-06-02T12:16:42.683Z] c9b26f41504c: Preparing
+[2020-06-02T12:16:42.683Z] cd7100a72410: Preparing
+[2020-06-02T12:16:42.683Z] f8f564cb1419: Waiting
+[2020-06-02T12:16:42.683Z] 638d4576a926: Waiting
+[2020-06-02T12:16:42.683Z] c9b26f41504c: Waiting
+[2020-06-02T12:16:42.683Z] cd7100a72410: Waiting
+[2020-06-02T12:16:42.683Z] 3c67124130ec: Waiting
+[2020-06-02T12:16:43.234Z] 3a55166d29b8: Layer already exists
+[2020-06-02T12:16:43.234Z] a854dd4eaee0: Layer already exists
+[2020-06-02T12:16:43.234Z] 3997748855d0: Layer already exists
+[2020-06-02T12:16:43.234Z] 3c67124130ec: Layer already exists
+[2020-06-02T12:16:43.234Z] 638d4576a926: Layer already exists
+[2020-06-02T12:16:43.234Z] f8f564cb1419: Layer already exists
+[2020-06-02T12:16:43.485Z] c9b26f41504c: Layer already exists
+[2020-06-02T12:16:43.485Z] cd7100a72410: Layer already exists
+[2020-06-02T12:16:44.396Z] d24246c675c4: Pushed
+[2020-06-02T12:16:44.947Z] 94e2d2772b2c: Pushed
+[2020-06-02T12:16:48.175Z] 15771f1048518c8ebb022a3228e3434d422a1b34: digest: sha256:b2ad7573c9fe722cc447b955f376934b083b7296517a0e6cbfcbc7fa65917354 size: 2410
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (ssh)
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] tool
+[Pipeline] envVarsForTool
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
+[2020-06-02T12:16:48.674Z] + chmod +x replace.sh
+[Pipeline] sh
+[2020-06-02T12:16:48.947Z] + ./replace.sh 15771f1048518c8ebb022a3228e3434d422a1b34
+[Pipeline] sshagent
+[2020-06-02T12:16:48.963Z] [ssh-agent] Using credentials prithdileep (k8s)
+[2020-06-02T12:16:48.963Z] [ssh-agent] Looking for ssh-agent implementation...
+[2020-06-02T12:16:48.973Z] [ssh-agent]   Exec ssh-agent (binary ssh-agent on a remote machine)
+[2020-06-02T12:16:48.973Z] $ ssh-agent
+[2020-06-02T12:16:48.983Z] SSH_AUTH_SOCK=/tmp/ssh-SVsJwe2OkMny/agent.16375
+[2020-06-02T12:16:48.983Z] SSH_AGENT_PID=16378
+[2020-06-02T12:16:48.984Z] Running ssh-add (command line suppressed)
+[2020-06-02T12:16:48.994Z] Identity added: /var/lib/jenkins/workspace/k8ssh@tmp/private_key_4095245462758815331.key (/var/lib/jenkins/workspace/k8ssh@tmp/private_key_4095245462758815331.key)
+[2020-06-02T12:16:48.995Z] [ssh-agent] Started.
+[Pipeline] {
+[Pipeline] sh
+[2020-06-02T12:16:49.271Z] + scp -o StrictHostKeyChecking=no services.yml changed-pod.yml services.yml prithdileep@104.154.78.159:/home/prithdileep
+[Pipeline] script
+[Pipeline] {
+[Pipeline] sh
+[2020-06-02T12:16:49.808Z] + ssh prithdileep@104.154.78.159 kubectl delete all --all
+[2020-06-02T12:16:50.060Z] pod "web-pod" deleted
+[2020-06-02T12:16:50.310Z] service "kubernetes" deleted
+[2020-06-02T12:16:50.310Z] service "web-service" deleted
+[Pipeline] sh
+[2020-06-02T12:17:00.454Z] + ssh prithdileep@104.154.78.159 kubectl create -f .
+[2020-06-02T12:17:01.005Z] pod/web-pod created
+[2020-06-02T12:17:01.005Z] service/web-service created
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] }
+[2020-06-02T12:17:01.037Z] $ ssh-agent -k
+[2020-06-02T12:17:01.047Z] unset SSH_AUTH_SOCK;
+[2020-06-02T12:17:01.047Z] unset SSH_AGENT_PID;
+[2020-06-02T12:17:01.047Z] echo Agent pid 16378 killed;
+[2020-06-02T12:17:01.048Z] [ssh-agent] Stopped.
+[Pipeline] // sshagent
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] sh
+[2020-06-02T12:17:01.415Z] + echo 'This will always run'
+[2020-06-02T12:17:01.415Z] This will always run
+[Pipeline] mail
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // timestamps
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service
+  labels:
+    app: web-deployment
+spec:
+  selector:
+    app: web-deployment
+  type: LoadBalancer
+  ports:
+    - port: 8090
+      targetPort: 8090
+      nodePort: 30035
