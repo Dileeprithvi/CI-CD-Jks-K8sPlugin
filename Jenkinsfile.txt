@@ -72,25 +72,23 @@ pipeline {
           sh 'docker push dileep95/spring:${DOCKER_TAG}'
         }
       }
-    }    	
-    stage('ssh'){
+    }  
+    stage('Dockertag to pod'){
 	steps{
               sh "chmod +x replace.sh"
 	      sh "./replace.sh ${DOCKER_TAG}"
-                sshagent(['k8s']) {	      
-		   sh "scp -o StrictHostKeyChecking=no services.yml changed-pod.yml services.yml prithdileep@104.154.78.159:/home/prithdileep"
-		script{
-			sh "ssh prithdileep@104.154.78.159 kubectl delete all --all"
-		try{
-		  sh "ssh prithdileep@104.154.78.159 kubectl create -f ."
-		  }
-		catch(error){
-		sh "ssh prithdileep@104.154.78.159 kubectl apply -f ."
-            }
         }
     }
-   }
-  } 
+     stage("Deploy To Kuberates Cluster"){
+        steps{
+            kubernetesDeploy(
+            configs: 'changed-pod.yml', 'services.yml',
+            kubeconfigId: 'kc',
+            enableConfigSubstitution: true
+        )
+     }
+    }
+   
 	}
 post {
     always {
