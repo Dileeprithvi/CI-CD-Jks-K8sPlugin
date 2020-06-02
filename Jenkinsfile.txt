@@ -81,7 +81,7 @@ pipeline {
     }
      stage("Deploy To Kuberates Cluster"){
         steps{
-		kubernetesDeploy configs: 'changed-pod.yml, services.yml', kubeConfig: [path: ''], kubeconfigId: 'kc', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
+		kubernetesDeploy configs: 'changed-deploy.yml, services.yml', kubeConfig: [path: ''], kubeconfigId: 'kc', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
      }
     }
    
