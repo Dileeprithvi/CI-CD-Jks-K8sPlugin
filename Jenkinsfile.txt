@@ -79,12 +79,13 @@ pipeline {
 	      sh "./replace.sh ${DOCKER_TAG}"
         }
     }
-     stage("Deploy To Kuberates Cluster"){
-        steps{
-		kubernetesDeploy configs: 'changed-deploy.yml', kubeConfig: [path: '/var/lib/jenkins/workspace/k8ssh/config'], kubeconfigId: 'kc', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
+     stage('Deploy To Kuberates Cluster') {
+        steps {
+	script {
+		kubernetesDeploy(configs: 'changed-deploy.yml', kubeconfigId: 'kc')
      }
     }
-   
+   }
 	}
 post {
     always {
