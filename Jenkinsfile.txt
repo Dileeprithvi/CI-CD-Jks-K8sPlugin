@@ -21,7 +21,6 @@ pipeline {
 // artifactNumToKeepStr - Max # of builds to keep with artifacts	  
 }	
   environment {
-    SONAR_HOME = "${tool name: 'sonar-scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}"
     DOCKER_TAG = DockerTag()	  
   }  
   stages {
@@ -43,23 +42,6 @@ pipeline {
         }			                      
       }
     }	
-    stage('SonarQube_Analysis') {
-      steps {
-	    script {
-          scannerHome = tool 'sonar-scanner'
-        }
-        withSonarQubeEnv('sonar') {
-      	  sh """${scannerHome}/bin/sonar-scanner"""
-        }
-      }	
-    }	
-	stage('Quality_Gate') {
-	  steps {
-	    timeout(time: 3, unit: 'MINUTES') {
-		  waitForQualityGate abortPipeline: true
-        }
-      }
-    }
     stage('Build Docker Image'){
       steps {
         sh 'docker build . -t dileep95/spring:${DOCKER_TAG}'
@@ -81,19 +63,10 @@ pipeline {
     }
      stage("Deploy To Kuberates Cluster"){
         steps{
-		kubernetesDeploy configs: 'changed-pod.yml, services.yml', kubeConfig: [path: ''], kubeconfigId: 'kc', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
+	script{
+		kubernetesDeploy(configs: 'changed-pod.yml, kubeconfigId: '"kc")
      }
     }
-   
-	}
-post {
-    always {
-sh 'echo "This will always run"'
-mail bcc: '', body: "<br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br>URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "Success: Project name -> ${env.JOB_NAME}", to: "prithdileep@gmail.com";
-    }
-    failure {
-sh 'echo "This will run only if failed"'
-      mail bcc: '', body: "<br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br>URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "ERROR: Project name -> ${env.JOB_NAME}", to: "prithdileep@gmail.com";
-    }
-  }
+   }
+}
 }
