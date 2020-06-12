@@ -64,7 +64,7 @@ pipeline {
      stage("Deploy To Kuberates Cluster"){
         steps{
 	script{
-		kubernetesDeploy(configs: 'changed-pod.yml, kubeconfigId: '"kc")
+		kubernetesDeploy(configs: "changed-pod.yml", kubeconfigId: "kc")
      }
     }
    }
