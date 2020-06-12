@@ -34,7 +34,7 @@ pipeline {
     
     stage('Deploy App') {
      steps{
-       kubernetesDeploy configs: 'hellowhale.yml', kubeConfig: [path: '/var/lib/jenkins/workspace/.kube/config'], kubeconfigId: '', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
+       kubernetesDeploy configs: 'hellowhale.yml', kubeConfig: [path: '/var/lib/jenkins/workspace/vsdvsv/config'], kubeconfigId: '', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
      }
     }
 
