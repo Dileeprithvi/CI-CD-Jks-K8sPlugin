@@ -3,17 +3,11 @@ pipeline {
   agent any
 
   stages {
-
-    stage('Checkout Source') {
-      steps {
-        git url:'https://github.com/vamsijakkula/hellowhale.git', branch:'master'
-      }
-    }
     
       stage("Build image") {
             steps {
                 script {
-                    myapp = docker.build("vamsijakkula/hellowhale:${env.BUILD_ID}")
+                    myapp = docker.build("dileep95/hellowhale:${env.BUILD_ID}")
                 }
             }
         }
@@ -21,7 +15,7 @@ pipeline {
       stage("Push image") {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker') {
                             myapp.push("latest")
                             myapp.push("${env.BUILD_ID}")
                     }
@@ -33,7 +27,7 @@ pipeline {
     stage('Deploy App') {
       steps {
         script {
-          kubernetesDeploy(configs: "hellowhale.yml", kubeconfigId: "mykubeconfig")
+          kubernetesDeploy(configs: "hellowhale.yml", kubeconfigId: "kc")
         }
       }
     }
