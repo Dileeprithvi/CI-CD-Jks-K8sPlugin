@@ -24,12 +24,18 @@ pipeline {
         }
 
     
+    //stage('Deploy App') {
+     // steps{
+   // script{
+        //  kubernetesDeploy(configs: "hellowhale.yml", kubeconfigId: "/var/lib/jenkins/workspace/.kube/config")
+      //  }
+ // }
+    //  }
+    
     stage('Deploy App') {
-      steps {
-        script {
-          kubernetesDeploy(configs: "hellowhale.yml", kubeconfigId: "/var/lib/jenkins/workspace/.kube/config")
-        }
-      }
+     steps{
+       kubernetesDeploy configs: 'hellowhale.yml', kubeConfig: [path: '/var/lib/jenkins/workspace/.kube/config'], kubeconfigId: '', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
+     }
     }
 
   }
