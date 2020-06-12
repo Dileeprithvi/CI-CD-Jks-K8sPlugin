@@ -27,7 +27,7 @@ pipeline {
     stage('Deploy App') {
       steps {
         script {
-          kubernetesDeploy(configs: "hellowhale.yml", kubeconfigId: "kc")
+          kubernetesDeploy(configs: "hellowhale.yml", kubeconfigId: "/var/lib/jenkins/workspace/.kube/config")
         }
       }
     }
